@@ -1,0 +1,144 @@
+ Write Python interface program using MySQL to insert rows in table CLUB in database GAMES.
+
+
+import mysql.connector
+from mysql.connector import Error
+
+def insert_club(club_id, club_name, country):
+    try:
+        # Establish connection to the database
+        connection = mysql.connector.connect(
+            host='localhost',       # Update with your MySQL host
+            user='your_username',   # Update with your MySQL username
+            password='your_password', # Update with your MySQL password
+            database='GAMES'        # Specify the database name
+        )
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+
+            # Insert query
+            insert_query = """
+            INSERT INTO CLUB (club_id, club_name, country) 
+            VALUES (%s, %s, %s)
+            """
+            # Execute the insert statement
+            cursor.execute(insert_query, (club_id, club_name, country))
+            # Commit the transaction
+            connection.commit()
+            print(f"Club {club_name} inserted successfully.")
+
+    except Error as e:
+        print(f"Error: {e}")
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed.")
+
+# Example of inserting a club
+insert_club(1, "Real Madrid", "Spain")
+
+
+
+
+
+
+
+2) Write Python interface program using MySQL to increase price by 10% in table  CUSTOMER of MYORG database
+
+
+
+import mysql.connector
+from mysql.connector import Error
+
+def increase_price():
+    try:
+        # Connect to the MySQL database
+        connection = mysql.connector.connect(
+            host='localhost',          # Replace with your MySQL host
+            user='your_username',      # Replace with your MySQL username
+            password='your_password',  # Replace with your MySQL password
+            database='MYORG'           # Specify the database name
+        )
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+
+            # Update query to increase price by 10%
+            update_query = """
+            UPDATE CUSTOMER
+            SET price = price * 1.10
+            """
+
+            # Execute the update query
+            cursor.execute(update_query)
+            
+            # Commit the transaction
+            connection.commit()
+
+            print("Prices increased by 10% successfully.")
+
+    except Error as e:
+        print(f"Error: {e}")
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed.")
+
+# Execute the function
+increase_price()
+
+
+
+
+
+3)Write a Python interface program using MySQL to delete all those customers whose name contains Kumar from table CUSTOMER in database MYORG.
+
+
+
+import mysql.connector
+from mysql.connector import Error
+
+def delete_customers_with_kumar():
+    try:
+        # Connect to the MySQL database
+        connection = mysql.connector.connect(
+            host='localhost',          # Replace with your MySQL host
+            user='your_username',      # Replace with your MySQL username
+            password='your_password',  # Replace with your MySQL password
+            database='MYORG'           # Specify the database name
+        )
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+
+            # Delete query to remove customers whose names contain 'Kumar'
+            delete_query = """
+            DELETE FROM CUSTOMER
+            WHERE name LIKE '%Kumar%'
+            """
+
+            # Execute the delete statement
+            cursor.execute(delete_query)
+            
+            # Commit the transaction
+            connection.commit()
+
+            print("Customers with 'Kumar' in their names deleted successfully.")
+
+    except Error as e:
+        print(f"Error: {e}")
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed.")
+
+# Execute the function
+delete_customers_with_kumar()
+

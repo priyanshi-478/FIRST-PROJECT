@@ -1,0 +1,35 @@
+stack using an array
+
+
+stack is a collection of element following LIFO . item can be insert or can be remove only one by one 
+
+
+Imeplementing stack using array 
+
+1 fixed size array creation 
+2 top element 
+
+
+struct stack {
+   int sige ;
+   int top;
+   int arr;
+}
+return s.arrr[s.top]
+
+
+Implementing stack using linked list 
+
+stuct node {
+   int data ;
+   stuct node*next;
+}
+
+1 side 1 is used for push and pop  operations 
+2 head is now at top
+3 stack empty condition
+4 stack full when - when heap memory is exhausted 
+5 you can always set a custom sige 
+
+ 
+
